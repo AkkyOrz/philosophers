@@ -1,11 +1,11 @@
-#include "philo.h"
 #include "helper.h"
+#include "philo.h"
 #include <stdio.h>
 #include <string.h>
 static bool		check_args(t_args *args);
-static t_args	*init_args(int argc, char **argv);
+static t_args	*init_args_helper(int argc, char **argv);
 
-static t_args	*init_args(int argc, char **argv)
+static t_args	*init_args_helper(int argc, char **argv)
 {
 	t_args	*args;
 
@@ -34,15 +34,14 @@ static bool	check_args(t_args *args)
 	return (true);
 }
 
-bool	Init_args(int argc, char **argv, t_args **args)
+bool	init_args(int argc, char **argv, t_args **args)
 {
 	if (argc != 5 && argc != 6)
 	{
-		printf("Usage:"
-				"./philo <number of philosophers> <time to die> <time to eat> <time to sleep> [<eat limit>]\n");
+		printf("Usage: ./philo <num> <die> <eat> <sleep>\n");
 		return (false);
 	}
-	*args = init_args(argc, argv);
+	*args = init_args_helper(argc, argv);
 	if (*args == NULL)
 		return (false);
 	if (check_args(*args) == false)

@@ -1,6 +1,6 @@
 NAME 		:= philo
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror -pedantic -g -lpthread
+CFLAGS		:=	-Wall -Wextra -Werror -g -lpthread
 
 HEADERS		=	.
 
@@ -13,6 +13,9 @@ SRCS = main.c\
 		ft_calloc.c\
 		init_philosopher.c\
 		get_time_ms.c\
+		init_vars.c\
+		delete_vars.c\
+		delete_philosophers.c\
 
 
 OBJS = ${SRCS:.c=.o}
