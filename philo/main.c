@@ -8,14 +8,15 @@
 
 int	main(int argc, char **argv)
 {
-	t_vars	*vars;
+	t_var	**vars;
 
-	if (!init_vars(argc, argv, &vars))
+	if (!init_var(argc, argv, &vars))
 	{
-        delete_vars(&vars);
+    delete_vars(&vars);
 		return (EXIT_FAILURE);
 	}
-	// if (!start_philosophers(philosophers))
-	// return (EXIT_FAILURE);
-    delete_vars(&vars);
+	delete_vars(&vars);
+	// if (!start_philosophers(vars))
+  //       return (EXIT_FAILURE);
+  //   delete_vars(&vars);
 }

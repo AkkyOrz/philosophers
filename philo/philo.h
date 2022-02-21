@@ -25,16 +25,22 @@ typedef struct s_philosopher
 	int				eat_count;
 }					t_philosopher;
 
+// args is read only after init
 typedef struct s_vars
 {
 	t_args			*args;
-	t_philosopher	**philosophers;
-}					t_vars;
+	t_philosopher	*philosopher;
+	pthread_mutex_t	*forks;
+}					t_var;
 
 bool				init_args(int argc, char **argv, t_args **args);
 void				delete_args(t_args **args_p);
 bool				init_philosophers(t_args *args, t_philosopher ***vars);
-bool				init_vars(int argc, char **argv, t_vars **vars);
-void delete_vars(t_vars **vars_p);
+bool				init_var(int argc, char **argv, t_var ***vars_p);
+void delete_forks(pthread_mutex_t *forks, int i);
+void delete_philosopher(t_philosopher *philosopher);
 void delete_philosophers(t_philosopher ***philosophers, int i);
+bool start_philosophers(t_var *vars);
+void delete_vars(t_var ***vars);
+
 #endif

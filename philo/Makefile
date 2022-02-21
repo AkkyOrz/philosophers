@@ -16,6 +16,8 @@ SRCS = main.c\
 		init_vars.c\
 		delete_vars.c\
 		delete_philosophers.c\
+		delete_forks.c\
+		start_philosophers.c\
 
 
 OBJS = ${SRCS:.c=.o}

@@ -1,12 +1,19 @@
 #include "philo.h"
 
-void delete_vars(t_vars **vars)
+void	delete_vars(t_var ***vars)
 {
-	if ((*vars)->philosophers != NULL)
+	const int size = (*vars)[0]->args->number_of_philosophers;
+	int	i;
+
+	i = 0;
+	delete_args(&(*vars)[0]->args);
+	delete_forks((*vars)[0]->forks, size);
+	while (i < size)
 	{
-		delete_philosophers(&(*vars)->philosophers, (*vars)->args->number_of_philosophers - 1);
+		delete_philosopher((*vars)[i]->philosopher);
+		free((*vars)[i]);
+		i++;
 	}
-	delete_args(&(*vars)->args);
 	free(*vars);
 	*vars = NULL;
 }
