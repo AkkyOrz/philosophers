@@ -79,12 +79,12 @@ bool	init_var(int argc, char **argv, t_var ***vars_p)
 		i++;
 	}
 	i = 0;
-	mutex = ft_calloc(1, sizeof(pthread_mutex_t));
-	pthread_mutex_init(mutex, NULL);
 	while (i < args->number_of_philosophers)
 	{
+		mutex = ft_calloc(1, sizeof(pthread_mutex_t));
+		pthread_mutex_init(mutex, NULL);
 		assign_var_values(vars[i], args, forks, philosophers[i]);
-		vars[i]->monitor_mutex = mutex;
+		vars[i]->philosopher_mutex = mutex;
 		i++;
 	}
 

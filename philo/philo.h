@@ -41,7 +41,7 @@ typedef struct s_vars
 	t_args			*args;
 	t_philosopher	*philosopher;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t *monitor_mutex;
+	pthread_mutex_t *philosopher_mutex;
 } t_var;
 
 bool				init_args(int argc, char **argv, t_args **args);
