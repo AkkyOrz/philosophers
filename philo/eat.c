@@ -12,8 +12,14 @@ bool	eat(t_var *var)
 
 	first = get_fork_id(var->philosopher->id - 1, n);
 	second = get_fork_id(var->philosopher->id, n);
-	if (first > second)
-		ft_swap(&first, &second);
+	if (first % 2 == 0)
+	{
+		if (first > second)
+			ft_swap(&first, &second);
+	} else {
+		if (first < second)
+			ft_swap(&first, &second);
+	}
 	if (first %2 == 0)
 		usleep(500);
 	pthread_mutex_lock(&var->forks[first]);
