@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include "helper.h"
 #include <stdio.h>
+#include <unistd.h>
 
 bool	eat(t_var *var)
 {
@@ -13,6 +14,8 @@ bool	eat(t_var *var)
 	second = get_fork_id(var->philosopher->id, n);
 	if (first > second)
 		ft_swap(&first, &second);
+	if (first %2 == 0)
+		usleep(500);
 	pthread_mutex_lock(&var->forks[first]);
 	print_log(var->philosopher, TAKING_FORK);
 	pthread_mutex_lock(&var->forks[second]);
