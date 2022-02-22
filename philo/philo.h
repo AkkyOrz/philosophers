@@ -5,6 +5,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <pthread.h>
 
 # define MAX_PHILO 1000
 
