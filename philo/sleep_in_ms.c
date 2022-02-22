@@ -12,6 +12,9 @@ void sleep_in_ms(int wait_ms)
 	while (get_time_ms() < ends_at)
 	{
 		sleep_in = (ends_at - get_time_ms()) / 2;
-		usleep(sleep_in * 1000);
+		if (sleep_in > 0)
+			usleep(sleep_in * 1000);
+		else
+			usleep(100);
 	}
 }
