@@ -2,23 +2,25 @@
 #include "philo.h"
 #include <pthread.h>
 
-static bool	init_forks(t_args *args, pthread_mutex_t **forks)
+static bool	init_forks(t_args *args, pthread_mutex_t **forks_p)
 {
 	int	i;
+	pthread_mutex_t *forks;
 
 	i = 0;
-	*forks = (pthread_mutex_t *)ft_calloc(args->number_of_philosophers,
+	forks = (pthread_mutex_t *)ft_calloc(args->number_of_philosophers,
 											sizeof(pthread_mutex_t));
-	if (*forks == NULL)
+	if (forks == NULL)
 		return (false);
 	while (i < args->number_of_philosophers)
 	{
-		if (pthread_mutex_init(&(*forks)[i], NULL) != 0)
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
 		{
 			return (false);
 		}
 		i++;
 	}
+	*forks_p = forks;
 	return (true);
 }
 
@@ -36,7 +38,8 @@ bool	init_var(int argc, char **argv, t_var ***vars_p)
 	t_philosopher	**philosophers;
 	pthread_mutex_t	*forks;
 	t_var 			**vars;
-	int			i;
+	pthread_mutex_t *mutex;
+	int i;
 
 	args = NULL;
 	philosophers = NULL;
@@ -76,11 +79,15 @@ bool	init_var(int argc, char **argv, t_var ***vars_p)
 		i++;
 	}
 	i = 0;
+	mutex = ft_calloc(1, sizeof(pthread_mutex_t));
+	pthread_mutex_init(mutex, NULL);
 	while (i < args->number_of_philosophers)
 	{
 		assign_var_values(vars[i], args, forks, philosophers[i]);
+		vars[i]->monitor_mutex = mutex;
 		i++;
 	}
+
 	free(philosophers);
 	*vars_p = vars;
 	return (true);

@@ -18,6 +18,14 @@ SRCS = main.c\
 		delete_philosophers.c\
 		delete_forks.c\
 		start_philosophers.c\
+		eat.c\
+		print_log.c\
+		get_fork_id.c\
+		ft_swap.c\
+		sleep_in_ms.c\
+		go_to_sleep.c\
+		think.c\
+		monitor_starving.c\
 
 
 OBJS = ${SRCS:.c=.o}
