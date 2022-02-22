@@ -19,6 +19,7 @@ bool	eat(t_var *var)
 	pthread_mutex_lock(&var->forks[first]);
 	print_log(var->philosopher, TAKING_FORK);
 	pthread_mutex_lock(&var->forks[second]);
+	var->philosopher->last_ate_at = get_time_ms();
 	print_log(var->philosopher, TAKING_FORK);
 	print_log(var->philosopher, EATING);
 	sleep_in_ms(var->args->eat_ms);
