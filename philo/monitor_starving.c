@@ -17,7 +17,7 @@ bool	monitor_starving(t_var *var)
 				return (false);
 			}
 		pthread_mutex_unlock(var->philosopher_mutex);
-		usleep(2000);
+		usleep(5000);
 	}
 	return (true);
 }
