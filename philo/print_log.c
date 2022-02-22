@@ -16,6 +16,6 @@ void	print_log(const t_philosopher *philosopher, t_state state)
 	else if (state == SLEEPING)
 		state_str = "is \033[35msleeping\033[0m";
 	else if (state == STARVING)
-		state_str = "is \033[31mdead\033[0m";
+		state_str = "is \033[31mdied\033[0m";
 	printf("%lu %d %s\n", get_time_ms(), id, state_str);
 }
