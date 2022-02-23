@@ -10,7 +10,11 @@ void *philosopher(void *var_p)
 	var = *(t_var **)var_p;
 	while (true)
 	{
+		if (!take_forks(var->forks, var->philosopher, var->args->number_of_philosophers))
+			break;
 		if (!eat(var))
+			break;
+		if (!put_forks(var->forks, var->philosopher, var->args->number_of_philosophers))
 			break;
 		if (!go_to_sleep(var))
 			break;

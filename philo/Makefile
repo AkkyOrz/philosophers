@@ -26,6 +26,7 @@ SRCS = main.c\
 		go_to_sleep.c\
 		think.c\
 		monitor_starving.c\
+		take_forks.c\
 
 
 OBJS = ${SRCS:.c=.o}

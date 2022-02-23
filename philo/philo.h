@@ -44,6 +44,12 @@ typedef struct s_vars
 	pthread_mutex_t *philosopher_mutex;
 } t_var;
 
+typedef struct s_pair
+{
+	int first;
+	int second;
+} t_pair;
+
 bool				init_args(int argc, char **argv, t_args **args);
 void				delete_args(t_args **args_p);
 bool				init_philosophers(t_args *args, t_philosopher ***vars);
@@ -54,9 +60,11 @@ void				delete_philosophers(t_philosopher ***philosophers, int i);
 bool				start_philosophers(t_var **vars);
 void				delete_vars(t_var ***vars);
 int get_fork_id(int id, int n);
+bool take_forks(pthread_mutex_t *forks, t_philosopher *philosopher, const int n);
 bool eat(t_var *var);
 bool go_to_sleep(t_var *var);
 bool think(t_var *var);
+bool put_forks(pthread_mutex_t *forks, t_philosopher *philosopher, const int n);
 bool monitor_starving(t_var *var);
 void print_log(const t_philosopher *philosopher, t_state state);
 
