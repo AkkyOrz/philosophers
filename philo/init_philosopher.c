@@ -7,7 +7,7 @@
 
 static void	init_single_philosopher(t_philosopher *philo, int i)
 {
-	philo->id = i + 1;
+	philo->id = i;
 	philo->last_ate_at = get_time_ms();
 	philo->eat_count = 0;
 }

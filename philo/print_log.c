@@ -5,6 +5,7 @@
 void	print_log(const t_philosopher *philosopher, t_state state)
 {
 	const char	*state_str;
+	// const int	id = philosopher->id + 1;
 	const int	id = philosopher->id;
 
 	if (state == EATING)
