@@ -73,8 +73,9 @@ typedef struct s_pair
 t_philosopher		**init_philosophers(int argc, char **argv);
 void				*ft_calloc(size_t nmemb, size_t size);
 int					ft_atoi(const char *nptr);
-bool ft_isdigit(int c);
-void delete_philosophers(t_philosopher **philosophers, int num);
+bool				ft_isdigit(int c);
+void				delete_philosophers(t_philosopher **philosophers, int num);
 size_t				get_time_ms(void);
+bool				init_mutexes(t_philosopher **philosophers);
 
 #endif
