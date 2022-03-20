@@ -19,10 +19,15 @@ bool	take_fork(t_philosopher *philosopher, t_fork *fork)
 	bool	is_taken;
 
 	pthread_mutex_lock(&fork->mutex);
+	if (print_log(philosopher, TAKING_FORK))
+	{
+		pthread_mutex_unlock(&fork->mutex);
+		return (false);
+	}
 	is_taken = fork->is_taken;
 	if (!is_taken)
 		fork->is_taken = true;
-	return (print_log(philosopher, TAKING_FORK));
+	return (true);
 }
 
 bool	take_forks(t_philosopher *philosopher, t_fork *forks)
