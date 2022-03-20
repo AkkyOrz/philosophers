@@ -27,7 +27,7 @@ bool think(t_philosopher *philosopher)
 {
 	if (!print_log(philosopher, THINKING))
 		return (false);
-	usleep(500);
+	// usleep(500);
 	return (true);
 }
 
