@@ -19,6 +19,13 @@ SRCS = main.c\
 		monitor_philosophers.c\
 		last_ate_at.c\
 		liveness.c\
+		simulate_single_philosopher.c\
+		print_log.c\
+		forks.c\
+		fork_interfaces.c\
+		get_fork_id.c\
+		ft_swap.c\
+
 
 
 OBJS = ${SRCS:.c=.o}

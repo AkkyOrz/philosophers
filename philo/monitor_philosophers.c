@@ -11,6 +11,7 @@ static bool	is_starved(t_philosopher *philo)
 	if (last_ate_at + die_ms < get_time_ms())
 	{
 		set_liveness(&philo->vars->liveness, false);
+		print_log(philo, STARVING);
 		return (true);
 	}
 	return (false);

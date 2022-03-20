@@ -1,4 +1,4 @@
-#include "helper.h"
+#include "philo.h"
 
 void	ft_swap(int *a, int *b)
 {
