@@ -14,6 +14,7 @@ SRCS = main.c\
 		ft_isdigit.c\
 		get_time_ms.c\
 		delete_philosophers.c\
+		init_mutexes.c\
 
 
 OBJS = ${SRCS:.c=.o}

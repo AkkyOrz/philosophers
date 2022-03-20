@@ -7,5 +7,7 @@ int	main(int argc, char **argv)
 	philosophers = init_philosophers(argc, argv);
 	if (philosophers == NULL)
 		return (EXIT_FAILURE);
+	if (!init_mutexes(philosophers))
+		return (EXIT_FAILURE);
 	return (0);
 }
