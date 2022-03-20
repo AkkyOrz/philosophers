@@ -26,7 +26,7 @@ bool	print_log(const t_philosopher *philosopher, t_state state)
 	// 	state_str = "is \033[35msleeping\033[0m";
 	// else if (state == STARVING)
 	// 	state_str = "is \033[31mdied\033[0m";
-	if (!get_liveness(&philosopher->vars->liveness))
+	if (!get_liveness(&philosopher->vars->liveness) && state != STARVING)
 		return (false);
 	printf("%lu %d %s\n", get_time_ms(), id, state_str);
 	return (true);

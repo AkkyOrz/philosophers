@@ -25,6 +25,7 @@ SRCS = main.c\
 		fork_interfaces.c\
 		get_fork_id.c\
 		ft_swap.c\
+		sleep_in_ms.c\
 
 
 
