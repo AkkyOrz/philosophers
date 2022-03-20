@@ -9,6 +9,7 @@
 
 # define MAX_PHILO 1000
 # define MONITOR_TICK_US 900
+# define TICK_US 100
 
 typedef enum e_state
 {
@@ -75,6 +76,7 @@ t_philosopher		**init_philosophers(int argc, char **argv);
 void				*ft_calloc(size_t nmemb, size_t size);
 int					ft_atoi(const char *nptr);
 bool				ft_isdigit(int c);
+void				ft_swap(int *a, int *b);
 void				delete_philosophers(t_philosopher **philosophers, int num);
 size_t				get_time_ms(void);
 bool				init_mutexes(t_philosopher **philosophers);
@@ -84,6 +86,13 @@ size_t				get_last_ate_at(t_philosopher *philo);
 void				set_last_ate_at(t_philosopher *philo, size_t time_ms);
 void				set_liveness(t_liveness *liveness, bool is_alive);
 size_t				get_liveness(t_liveness *liveness);
-void *monitor_philosophers(void *philosophers_ptr);
+void				*monitor_philosophers(void *philosophers_ptr);
+bool				print_log(const t_philosopher *philosopher, t_state state);
+bool				get_fork_state(t_fork *fork);
+void				set_fork_state(t_fork *fork, bool is_taken);
+int					get_fork_id(int id, int n);
+bool				take_forks(t_philosopher *philosopher, t_fork *forks);
+bool				put_forks(t_philosopher *philosopher, t_fork *forks);
+void				sleep_in_ms(size_t ms);
 
 #endif

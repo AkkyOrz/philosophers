@@ -12,12 +12,14 @@ bool	init_mutexes(t_philosopher **philosophers)
 	{
 		if (pthread_mutex_init(&vars->forks[i].mutex, NULL) != 0)
 			return (false);
+		i++;
 	}
 	i = 0;
 	while (i < num)
 	{
 		if (pthread_mutex_init(&philosophers[i]->last_ate_at.mutex, NULL) != 0)
 			return (false);
+		i++;
 	}
 	if (pthread_mutex_init(&vars->liveness.mutex, NULL) != 0)
 		return (false);

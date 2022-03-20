@@ -3,14 +3,13 @@
 
 static bool	is_starved(t_philosopher *philo)
 {
-	size_t	last_ate_at;
 	size_t	die_ms;
 
-	last_ate_at = get_last_ate_at(philo);
 	die_ms = philo->args->die_ms;
-	if (last_ate_at + die_ms < get_time_ms())
+	if (get_last_ate_at(philo) + die_ms < get_time_ms())
 	{
 		set_liveness(&philo->vars->liveness, false);
+		print_log(philo, STARVING);
 		return (true);
 	}
 	return (false);

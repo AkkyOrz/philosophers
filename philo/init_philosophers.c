@@ -56,8 +56,8 @@ t_philosopher	*new_philosopher(t_args *args, t_vars *vars, int index)
 	if (philosopher == NULL)
 		return (NULL);
 	philosopher->id = index + 1;
-	philosopher->left_fork_id = index;
-	philosopher->right_fork_id = index + 1;
+	philosopher->left_fork_id = get_fork_id(index, args->number_of_philosophers);
+	philosopher->right_fork_id = get_fork_id(index + 1, args->number_of_philosophers);
 	philosopher->last_ate_at.time_ms = get_time_ms();
 	philosopher->eat_count = 0;
 	philosopher->args = args;
