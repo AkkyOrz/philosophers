@@ -8,6 +8,7 @@
 # include <sys/time.h>
 
 # define MAX_PHILO 1000
+# define MONITOR_TICK_US 900
 
 typedef enum e_state
 {
@@ -36,7 +37,7 @@ typedef struct s_fork
 
 typedef struct s_liveness
 {
-	bool			is_dead;
+	bool			is_alive;
 	pthread_mutex_t	mutex;
 }					t_liveness;
 
@@ -77,5 +78,12 @@ bool				ft_isdigit(int c);
 void				delete_philosophers(t_philosopher **philosophers, int num);
 size_t				get_time_ms(void);
 bool				init_mutexes(t_philosopher **philosophers);
+bool				simulate_philosophers(t_philosopher **philosophers);
+void				*simulate_single_philosopher(void *philosopher_ptr);
+size_t				get_last_ate_at(t_philosopher *philo);
+void				set_last_ate_at(t_philosopher *philo, size_t time_ms);
+void				set_liveness(t_liveness *liveness, bool is_alive);
+size_t				get_liveness(t_liveness *liveness);
+void *monitor_philosophers(void *philosophers_ptr);
 
 #endif

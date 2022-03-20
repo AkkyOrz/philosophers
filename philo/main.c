@@ -9,5 +9,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (!init_mutexes(philosophers))
 		return (EXIT_FAILURE);
+	if (!simulate_philosophers(philosophers))
+		return (EXIT_FAILURE);
 	return (0);
 }
