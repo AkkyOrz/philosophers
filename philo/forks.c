@@ -9,15 +9,8 @@ t_pair	select_forks(const t_philosopher *philosopher)
 	pair = &pair_elm;
 	pair->first = philosopher->left_fork_id;
 	pair->second = philosopher->right_fork_id;
-	if (philosopher->id % 2 == 0)
-	{
-		if (pair->first > pair->second)
-			ft_swap(&pair->first, &pair->second);
-	}
-	else
-	{
+	if (pair->first > pair->second)
 		ft_swap(&pair->first, &pair->second);
-	}
 	return (pair_elm);
 }
 
