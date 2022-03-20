@@ -18,7 +18,7 @@ t_vars	*init_vars(int num)
 	while (++i < num)
 		forks[i].is_taken = false;
 	vars->forks = forks;
-	vars->liveness.is_dead = false;
+	vars->liveness.is_alive = true;
 	return (vars);
 }
 
