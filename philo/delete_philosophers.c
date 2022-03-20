@@ -1,17 +1,13 @@
 #include "philo.h"
 
-void	delete_philosopher(t_philosopher *philosopher)
+// don't free args and vars in this function because they are shared
+void	delete_philosophers(t_philosopher **philosophers, int num)
 {
-	free(philosopher);
-}
-
-void	delete_philosophers(t_philosopher ***philosophers, int i)
-{
-	while (i >= 0)
+	num -= 1;
+	while (num >= 0)
 	{
-		free((*philosophers)[i]);
-		i--;
+		free(philosophers[num]);
+		num--;
 	}
-	free(*philosophers);
-	philosophers = NULL;
+	free(philosophers);
 }

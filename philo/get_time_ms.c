@@ -1,4 +1,4 @@
-#include "helper.h"
+#include "philo.h"
 #include <stdlib.h>
 #include <sys/time.h>
 

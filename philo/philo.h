@@ -1,13 +1,22 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <pthread.h>
 # include <stdbool.h>
 # include <stdint.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <pthread.h>
 
 # define MAX_PHILO 1000
+
+typedef enum e_state
+{
+	THINKING,
+	EATING,
+	SLEEPING,
+	TAKING_FORK,
+	STARVING
+}					t_state;
 
 typedef struct s_args
 {
@@ -19,53 +28,53 @@ typedef struct s_args
 	bool			has_limit;
 }					t_args;
 
-typedef enum e_state
+typedef struct s_fork
 {
-	THINKING,
-	EATING,
-	SLEEPING,
-	TAKING_FORK,
-	STARVING
-}					t_state;
+	bool			is_taken;
+	pthread_mutex_t	mutex;
+}					t_fork;
 
-typedef struct s_philosopher
+typedef struct s_liveness
 {
-	int				id;
-	size_t			last_ate_at;
-	int				eat_count;
-}					t_philosopher;
+	bool			is_dead;
+	pthread_mutex_t	mutex;
+}					t_liveness;
+
+typedef struct s_last_ate_at
+{
+	size_t			time_ms;
+	pthread_mutex_t	mutex;
+}					t_last_ate_at;
 
 // args is read only after init
 typedef struct s_vars
 {
+	t_fork			*forks;
+	t_liveness		liveness;
+}					t_vars;
+
+typedef struct s_philosopher
+{
+	int				id;
+	int				left_fork_id;
+	int				right_fork_id;
+	t_last_ate_at	last_ate_at;
+	int				eat_count;
 	t_args			*args;
-	t_philosopher	*philosopher;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t *philosopher_mutex;
-} t_var;
+	t_vars			*vars;
+}					t_philosopher;
 
 typedef struct s_pair
 {
-	int first;
-	int second;
-} t_pair;
+	int				first;
+	int				second;
+}					t_pair;
 
-bool				init_args(int argc, char **argv, t_args **args);
-void				delete_args(t_args **args_p);
-bool				init_philosophers(t_args *args, t_philosopher ***vars);
-bool				init_var(int argc, char **argv, t_var ***vars_p);
-void				delete_forks(pthread_mutex_t *forks, int i);
-void				delete_philosopher(t_philosopher *philosopher);
-void				delete_philosophers(t_philosopher ***philosophers, int i);
-bool				start_philosophers(t_var **vars);
-void				delete_vars(t_var ***vars);
-int get_fork_id(int id, int n);
-bool take_forks(pthread_mutex_t *forks, t_philosopher *philosopher, const int n);
-bool eat(t_var *var);
-bool go_to_sleep(t_var *var);
-bool think(t_var *var);
-bool put_forks(pthread_mutex_t *forks, t_philosopher *philosopher, const int n);
-bool monitor_starving(t_var *var);
-void print_log(const t_philosopher *philosopher, t_state state);
+t_philosopher		**init_philosophers(int argc, char **argv);
+void				*ft_calloc(size_t nmemb, size_t size);
+int					ft_atoi(const char *nptr);
+bool ft_isdigit(int c);
+void delete_philosophers(t_philosopher **philosophers, int num);
+size_t				get_time_ms(void);
 
 #endif
