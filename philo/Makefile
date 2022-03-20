@@ -8,6 +8,12 @@ HEADERS		=	.
 INCLUDES	=	$(addprefix -I, $(HEADERS))
 
 SRCS = main.c\
+		ft_calloc.c\
+		init_philosophers.c\
+		ft_atoi.c\
+		ft_isdigit.c\
+		get_time_ms.c\
+		delete_philosophers.c\
 
 
 OBJS = ${SRCS:.c=.o}
