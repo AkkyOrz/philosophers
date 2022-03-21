@@ -6,71 +6,77 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 18:23:58 by akito             #+#    #+#             */
-/*   Updated: 2022/03/20 20:19:41 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 18:54:13 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <limits.h>
-#include <errno.h>
+
 int			ft_atoi(const char *nptr);
-static void	read_sign(int *sign, size_t *i, char c);
-static int	ft_isspace(int c);
-static int	return_value(long long result, int sign, int overflow);
+
+bool	validate_int_range(const char *nptr)
+{
+	size_t		i;
+	int			sign;
+	long long	result;
+
+	i = 0;
+	result = 0;
+	sign = 1;
+	if (nptr[i] == '-')
+		sign *= -1;
+	if (nptr[i] == '-' || nptr[i] == '+')
+		i++;
+	if (!ft_isdigit(nptr[i]))
+		return (false);
+	while (ft_isdigit(nptr[i]))
+	{
+		result = result * 10 + sign * (nptr[i] - '0');
+		if (result > INT_MAX || result < INT_MIN)
+			return (false);
+		i++;
+	}
+	if (nptr[i] != '\0')
+		return (false);
+	return (true);
+}
+
+bool	validate_chars(const char *nptr)
+{
+	size_t	i;
+
+	i = 0;
+	while (nptr[i] != '\0')
+	{
+		if (!ft_isdigit(nptr[i]) && nptr[i] != '-' && nptr[i] != '+')
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 int	ft_atoi(const char *nptr)
 {
 	size_t		i;
 	int			sign;
 	long long	result;
-	int			overflow;
 
 	i = 0;
 	result = 0;
 	sign = 1;
-	overflow = 0;
-	while (ft_isspace(nptr[i]))
+	if (!validate_chars(nptr) || !validate_int_range(nptr))
+		return (0);
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
 		i++;
-	read_sign(&sign, &i, nptr[i]);
+	}
 	while (ft_isdigit(nptr[i]))
 	{
-		if (result > (LONG_MAX / 10))
-			overflow = 1;
-		result *= 10;
-		if (result > (LONG_MAX - (nptr[i] - '0')))
-			overflow = 1;
-		result += (nptr[i] - '0');
-		if (overflow)
-			break ;
+		result = 10 * result + (nptr[i] - '0');
 		i++;
-	}
-	return (return_value(result, sign, overflow));
-}
-
-static void	read_sign(int *sign, size_t *i, char c)
-{
-	if (c == '+' || c == '-')
-	{
-		if (c == '-')
-			*sign *= -1;
-		(*i)++;
-	}
-}
-
-static int	ft_isspace(int c)
-{
-	return (('\t' <= c && c <= '\r') || c == ' ');
-}
-
-static int	return_value(long long result, int sign, int overflow)
-{
-	if (overflow)
-	{
-		errno = ERANGE;
-		if (sign == 1)
-			return ((int)LONG_MAX);
-		if (sign == -1)
-			return ((int)LONG_MIN);
 	}
 	return (result * sign);
 }

@@ -6,11 +6,12 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:46:42 by akito             #+#    #+#             */
-/*   Updated: 2022/03/21 14:05:56 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 18:59:19 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <unistd.h>
 
 t_vars	*init_vars(int num)
 {
@@ -51,10 +52,9 @@ t_args	*init_args(int argc, char **argv)
 	if (argc == 6)
 		args->eat_limit = ft_atoi(argv[5]);
 	args->has_limit = (argc == 6);
-	if (args->number_of_philosophers <= 0 || args->die_ms <= 0
-		|| args->eat_ms <= 0 || args->sleep_ms <= 0
-		|| (args->has_limit && args->eat_limit <= 0))
+	if (!valid_args(args))
 	{
+		write(2, "Error: invalid arguments\n", 25);
 		free(args);
 		return (NULL);
 	}

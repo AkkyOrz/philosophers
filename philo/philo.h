@@ -6,7 +6,7 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:00:05 by akito             #+#    #+#             */
-/*   Updated: 2022/03/21 14:09:23 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 18:54:53 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 
 # define MAX_PHILO 1000
+# define MAX_MS 10000
 # define MONITOR_TICK_US 900
 # define TICK_US 100
 
@@ -129,5 +130,6 @@ bool				is_all_philosopher_satisfied(t_eaten_count *eaten_count,
 						const int num);
 bool				get_is_satisfied(t_is_satisfied *is_satisfied);
 void				satisfied(t_is_satisfied *is_satisfied);
+bool				valid_args(t_args *args);
 
 #endif

@@ -28,6 +28,7 @@ SRCS = main.c\
 		sleep_in_ms.c\
 		eaten_count.c\
 		is_satisfied.c\
+		valid_args.c\
 
 OBJS = ${SRCS:.c=.o}
 
