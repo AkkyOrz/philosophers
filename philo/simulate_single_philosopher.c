@@ -6,7 +6,7 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:00:05 by akito             #+#    #+#             */
-/*   Updated: 2022/03/21 14:26:36 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 14:49:30 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	*simulate_single_philosopher(void *philosopher_ptr)
 		usleep(1500);
 	while (true)
 	{
-		if (get_is_satisfied(&philosopher->is_satisfied))
-			return (NULL);
 		if (!take_forks(philosopher))
 			return (NULL);
 		if (!eat(philosopher))

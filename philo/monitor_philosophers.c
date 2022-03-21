@@ -6,7 +6,7 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:46:42 by akito             #+#    #+#             */
-/*   Updated: 2022/03/21 14:05:11 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 14:51:27 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	*monitor_philosophers(void *philosophers_ptr)
 			if (is_all_philosopher_satisfied(&philosophers[0]->vars->eaten_count
 					, num))
 			{
+				set_liveness(&philosophers[0]->vars->liveness, false);
 				return (NULL);
 			}
 			if (is_starved(philosophers[i]))
