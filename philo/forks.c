@@ -14,42 +14,47 @@ t_pair	select_forks(const t_philosopher *philosopher)
 	return (pair_elm);
 }
 
-bool	take_fork(t_philosopher *philosopher, t_fork *fork)
+bool	take_a_fork(t_philosopher *philosopher, t_pair fork_ids, bool is_first)
 {
-	bool	is_taken;
+	int fork_id;
 
-	pthread_mutex_lock(&fork->mutex);
-	if (print_log(philosopher, TAKING_FORK))
+	if (is_first)
+		fork_id = fork_ids.first;
+	else
+		fork_id = fork_ids.second;
+	pthread_mutex_lock(&philosopher->vars->forks[fork_id].mutex);
+	if (!print_log(philosopher, TAKING_FORK))
 	{
-		pthread_mutex_unlock(&fork->mutex);
+		pthread_mutex_unlock(&philosopher->vars->forks[fork_id].mutex);
+		if (!is_first)
+			pthread_mutex_unlock(&philosopher->vars->forks[fork_ids.first].mutex);
 		return (false);
 	}
-	is_taken = fork->is_taken;
-	if (!is_taken)
-		fork->is_taken = true;
+	if (!philosopher->vars->forks[fork_id].is_taken)
+		philosopher->vars->forks[fork_id].is_taken = true;
 	return (true);
 }
 
-bool	take_forks(t_philosopher *philosopher, t_fork *forks)
+bool	take_forks(t_philosopher *philosopher)
 {
 	t_pair	pair;
 
 	pair = select_forks(philosopher);
-	if (!take_fork(philosopher, &forks[pair.first]))
+	if (!take_a_fork(philosopher, pair, true))
 		return (false);
-	if (!take_fork(philosopher, &forks[pair.second]))
+	if (!take_a_fork(philosopher, pair, false))
 		return (false);
 	return (true);
 }
 
-bool put_forks(t_philosopher *philosopher, t_fork *forks)
+bool put_forks(t_philosopher *philosopher)
 {
 	t_pair	pair;
 
 	pair = select_forks(philosopher);
-	forks[pair.second].is_taken = false;
-	pthread_mutex_unlock(&forks[pair.second].mutex);
-	forks[pair.first].is_taken = false;
-	pthread_mutex_unlock(&forks[pair.first].mutex);
+	philosopher->vars->forks[pair.second].is_taken = false;
+	pthread_mutex_unlock(&philosopher->vars->forks[pair.second].mutex);
+	philosopher->vars->forks[pair.first].is_taken = false;
+	pthread_mutex_unlock(&philosopher->vars->forks[pair.first].mutex);
 	return (true);
 }
