@@ -1,6 +1,6 @@
 #include "philo.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 
 bool	eat(t_philosopher *philosopher)
 {
@@ -12,10 +12,17 @@ bool	eat(t_philosopher *philosopher)
 	set_last_ate_at(philosopher, get_time_ms());
 	sleep_in_ms(philosopher->args->eat_ms);
 	philosopher->eat_count++;
+	if (philosopher->args->has_limit
+		&& !get_is_satisfied(&philosopher->is_satisfied)
+		&& philosopher->eat_count == philosopher->args->eat_limit)
+	{
+		satisfied(&philosopher->is_satisfied);
+		increment_eaten_count(&philosopher->vars->eaten_count);
+	}
 	return (put_forks(philosopher));
 }
 
-bool go_to_sleep(t_philosopher *philosopher)
+bool	go_to_sleep(t_philosopher *philosopher)
 {
 	if (!print_log(philosopher, SLEEPING))
 		return (false);
@@ -23,24 +30,25 @@ bool go_to_sleep(t_philosopher *philosopher)
 	return (true);
 }
 
-bool think(t_philosopher *philosopher)
+bool	think(t_philosopher *philosopher)
 {
 	if (!print_log(philosopher, THINKING))
 		return (false);
-	// usleep(500);
+	usleep(500);
 	return (true);
 }
 
-
-void *simulate_single_philosopher(void *philosopher_ptr)
+void	*simulate_single_philosopher(void *philosopher_ptr)
 {
-	t_philosopher *philosopher;
+	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher *)philosopher_ptr;
 	if (philosopher->id % 2 == 0)
 		usleep(1500);
 	while (true)
 	{
+		if (get_is_satisfied(&philosopher->is_satisfied))
+			return (NULL);
 		if (!take_forks(philosopher))
 			return (NULL);
 		if (!eat(philosopher))

@@ -54,6 +54,12 @@ typedef struct s_last_ate_at
 	pthread_mutex_t	mutex;
 }					t_last_ate_at;
 
+typedef struct s_is_satisfied
+{
+	bool			is_satisfied;
+	pthread_mutex_t	mutex;
+}					t_is_satisfied;
+
 // args is read only after init
 typedef struct s_vars
 {
@@ -69,7 +75,7 @@ typedef struct s_philosopher
 	int				right_fork_id;
 	t_last_ate_at	last_ate_at;
 	int				eat_count;
-	bool			is_satisfied;
+	t_is_satisfied	is_satisfied;
 	t_args			*args;
 	t_vars			*vars;
 }					t_philosopher;
@@ -106,7 +112,8 @@ bool				destroy_mutexes(t_philosopher **philosophers);
 void				delete_all(t_philosopher **philosophers, int num);
 int					get_eaten_count(t_eaten_count *eaten_count);
 void				increment_eaten_count(t_eaten_count *eaten_count);
-bool				is_all_philosopher_satisfied(t_eaten_count *eaten_count,
-					int num);
+bool is_all_philosopher_satisfied(t_eaten_count *eaten_count, const int num);
+bool get_is_satisfied(t_is_satisfied *is_satisfied);
+void				satisfied(t_is_satisfied *is_satisfied);
 
 #endif

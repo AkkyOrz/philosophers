@@ -17,7 +17,7 @@ void	increment_eaten_count(t_eaten_count *eaten_count)
 	pthread_mutex_unlock(&eaten_count->mutex);
 }
 
-bool	is_all_philosopher_satisfied(t_eaten_count *eaten_count, int num)
+bool	is_all_philosopher_satisfied(t_eaten_count *eaten_count, const int num)
 {
 	int	count;
 
