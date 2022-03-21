@@ -91,8 +91,8 @@ bool				print_log(const t_philosopher *philosopher, t_state state);
 bool				get_fork_state(t_fork *fork);
 void				set_fork_state(t_fork *fork, bool is_taken);
 int					get_fork_id(int id, int n);
-bool				take_forks(t_philosopher *philosopher, t_fork *forks);
-bool				put_forks(t_philosopher *philosopher, t_fork *forks);
+bool				take_forks(t_philosopher *philosopher);
+bool				put_forks(t_philosopher *philosopher);
 void				sleep_in_ms(size_t ms);
 
 #endif

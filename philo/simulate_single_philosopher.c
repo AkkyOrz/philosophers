@@ -6,13 +6,13 @@ bool	eat(t_philosopher *philosopher)
 {
 	if (!print_log(philosopher, EATING))
 	{
-		put_forks(philosopher, philosopher->vars->forks);
+		put_forks(philosopher);
 		return (false);
 	}
 	set_last_ate_at(philosopher, get_time_ms());
 	sleep_in_ms(philosopher->args->eat_ms);
 	philosopher->eat_count++;
-	return (put_forks(philosopher, philosopher->vars->forks));
+	return (put_forks(philosopher));
 }
 
 bool go_to_sleep(t_philosopher *philosopher)
@@ -41,7 +41,7 @@ void *simulate_single_philosopher(void *philosopher_ptr)
 		usleep(1500);
 	while (true)
 	{
-		if (!take_forks(philosopher, philosopher->vars->forks))
+		if (!take_forks(philosopher))
 			return (NULL);
 		if (!eat(philosopher))
 			return (NULL);

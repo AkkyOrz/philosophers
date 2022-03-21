@@ -1,6 +1,6 @@
 NAME 		:= philo
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror -g -pthread -fsanitize=thread
+CFLAGS		:=	-Wall -Wextra -Werror -g -pthread
 
 HEADERS		=	.
 
