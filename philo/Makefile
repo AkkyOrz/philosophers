@@ -14,7 +14,7 @@ SRCS = main.c\
 		ft_isdigit.c\
 		get_time_ms.c\
 		delete_philosophers.c\
-		init_mutexes.c\
+		manage_mutexes.c\
 		simulate_philosophers.c\
 		monitor_philosophers.c\
 		last_ate_at.c\
