@@ -6,7 +6,7 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:00:05 by akito             #+#    #+#             */
-/*   Updated: 2022/03/21 14:09:23 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 15:01:09 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ bool				is_all_philosopher_satisfied(t_eaten_count *eaten_count,
 						const int num);
 bool				get_is_satisfied(t_is_satisfied *is_satisfied);
 void				satisfied(t_is_satisfied *is_satisfied);
+void				eating_ms(t_philosopher *philosopher, size_t ms);
 
 #endif

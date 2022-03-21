@@ -6,7 +6,7 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:00:05 by akito             #+#    #+#             */
-/*   Updated: 2022/03/21 14:49:30 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 15:01:23 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	eat(t_philosopher *philosopher)
 		return (false);
 	}
 	set_last_ate_at(philosopher, get_time_ms());
-	sleep_in_ms(philosopher->args->eat_ms);
+	eating_ms(philosopher, philosopher->args->eat_ms);
 	philosopher->eat_count++;
 	if (philosopher->args->has_limit
 		&& !get_is_satisfied(&philosopher->is_satisfied)
