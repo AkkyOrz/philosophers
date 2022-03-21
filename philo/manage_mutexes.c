@@ -6,7 +6,7 @@
 /*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:46:42 by akito             #+#    #+#             */
-/*   Updated: 2022/03/21 14:09:00 by akito            ###   ########.fr       */
+/*   Updated: 2022/03/21 14:11:04 by akito            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ bool	init_mutexes_for_philosopher(t_philosopher **philosophers)
 bool	init_mutexes(t_philosopher **philosophers)
 {
 	t_vars		*vars;
-	const int	num;
+	const int	num = philosophers[0]->args->number_of_philosophers;
 	int			i;
 
-	num = philosophers[0]->args->number_of_philosophers;
 	vars = philosophers[0]->vars;
 	i = 0;
 	while (i < num)
