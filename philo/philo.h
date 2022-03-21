@@ -94,5 +94,7 @@ int					get_fork_id(int id, int n);
 bool				take_forks(t_philosopher *philosopher);
 bool				put_forks(t_philosopher *philosopher);
 void				sleep_in_ms(size_t ms);
+bool				destroy_mutexes(t_philosopher **philosophers);
+void delete_all(t_philosopher **philosophers, int num);
 
 #endif

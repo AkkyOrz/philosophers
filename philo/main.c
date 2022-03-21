@@ -11,5 +11,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (!simulate_philosophers(philosophers))
 		return (EXIT_FAILURE);
+	destroy_mutexes(philosophers);
+	delete_all(philosophers, philosophers[0]->args->number_of_philosophers);
 	return (0);
 }
