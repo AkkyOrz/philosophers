@@ -60,3 +60,14 @@ void	*simulate_single_philosopher(void *philosopher_ptr)
 	}
 	return (NULL);
 }
+
+void *simulate_alone_philosopher(void *philosopher_ptr)
+{
+	t_philosopher **philosopher;
+
+	philosopher = (t_philosopher **)philosopher_ptr;
+	print_log(philosopher[0], TAKING_FORK);
+	sleep_in_ms(philosopher[0]->args->die_ms);
+	usleep(MONITOR_TICK_US);
+	return (NULL);
+}

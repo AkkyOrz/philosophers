@@ -96,6 +96,7 @@ size_t				get_time_ms(void);
 bool				init_mutexes(t_philosopher **philosophers);
 bool				simulate_philosophers(t_philosopher **philosophers);
 void				*simulate_single_philosopher(void *philosopher_ptr);
+void				*simulate_alone_philosopher(void *philosopher_ptr);
 size_t				get_last_ate_at(t_philosopher *philo);
 void				set_last_ate_at(t_philosopher *philo, size_t time_ms);
 void				set_liveness(t_liveness *liveness, bool is_alive);
@@ -112,8 +113,9 @@ bool				destroy_mutexes(t_philosopher **philosophers);
 void				delete_all(t_philosopher **philosophers, int num);
 int					get_eaten_count(t_eaten_count *eaten_count);
 void				increment_eaten_count(t_eaten_count *eaten_count);
-bool is_all_philosopher_satisfied(t_eaten_count *eaten_count, const int num);
-bool get_is_satisfied(t_is_satisfied *is_satisfied);
+bool				is_all_philosopher_satisfied(t_eaten_count *eaten_count,
+					const int num);
+bool				get_is_satisfied(t_is_satisfied *is_satisfied);
 void				satisfied(t_is_satisfied *is_satisfied);
 
 #endif
