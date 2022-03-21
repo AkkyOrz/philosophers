@@ -42,6 +42,12 @@ typedef struct s_liveness
 	pthread_mutex_t	mutex;
 }					t_liveness;
 
+typedef struct s_eaten_count
+{
+	int				eaten_count;
+	pthread_mutex_t	mutex;
+}					t_eaten_count;
+
 typedef struct s_last_ate_at
 {
 	size_t			time_ms;
@@ -53,6 +59,7 @@ typedef struct s_vars
 {
 	t_fork			*forks;
 	t_liveness		liveness;
+	t_eaten_count	eaten_count;
 }					t_vars;
 
 typedef struct s_philosopher
@@ -62,6 +69,7 @@ typedef struct s_philosopher
 	int				right_fork_id;
 	t_last_ate_at	last_ate_at;
 	int				eat_count;
+	bool			is_satisfied;
 	t_args			*args;
 	t_vars			*vars;
 }					t_philosopher;
@@ -95,6 +103,10 @@ bool				take_forks(t_philosopher *philosopher);
 bool				put_forks(t_philosopher *philosopher);
 void				sleep_in_ms(size_t ms);
 bool				destroy_mutexes(t_philosopher **philosophers);
-void delete_all(t_philosopher **philosophers, int num);
+void				delete_all(t_philosopher **philosophers, int num);
+int					get_eaten_count(t_eaten_count *eaten_count);
+void				increment_eaten_count(t_eaten_count *eaten_count);
+bool				is_all_philosopher_satisfied(t_eaten_count *eaten_count,
+					int num);
 
 #endif

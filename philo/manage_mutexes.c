@@ -23,6 +23,8 @@ bool	init_mutexes(t_philosopher **philosophers)
 	}
 	if (pthread_mutex_init(&vars->liveness.mutex, NULL) != 0)
 		return (false);
+	if (pthread_mutex_init(&vars->eaten_count.mutex, NULL) != 0)
+		return (false);
 	return (true);
 }
 
@@ -48,6 +50,8 @@ bool destroy_mutexes(t_philosopher **philosophers)
 		i++;
 	}
 	if (pthread_mutex_destroy(&vars->liveness.mutex) != 0)
+		return (false);
+	if (pthread_mutex_destroy(&vars->eaten_count.mutex) != 0)
 		return (false);
 	return (true);
 }
