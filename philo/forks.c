@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   forks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/21 12:27:06 by akito             #+#    #+#             */
+/*   Updated: 2022/03/21 14:06:20 by akito            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <stdio.h>
 
@@ -16,7 +28,7 @@ t_pair	select_forks(const t_philosopher *philosopher)
 
 bool	take_a_fork(t_philosopher *philosopher, t_pair fork_ids, bool is_first)
 {
-	int fork_id;
+	int	fork_id;
 
 	if (is_first)
 		fork_id = fork_ids.first;
@@ -27,7 +39,8 @@ bool	take_a_fork(t_philosopher *philosopher, t_pair fork_ids, bool is_first)
 	{
 		pthread_mutex_unlock(&philosopher->vars->forks[fork_id].mutex);
 		if (!is_first)
-			pthread_mutex_unlock(&philosopher->vars->forks[fork_ids.first].mutex);
+			pthread_mutex_unlock(
+				&philosopher->vars->forks[fork_ids.first].mutex);
 		return (false);
 	}
 	if (!philosopher->vars->forks[fork_id].is_taken)
@@ -47,7 +60,7 @@ bool	take_forks(t_philosopher *philosopher)
 	return (true);
 }
 
-bool put_forks(t_philosopher *philosopher)
+bool	put_forks(t_philosopher *philosopher)
 {
 	t_pair	pair;
 

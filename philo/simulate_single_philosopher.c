@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulate_single_philosopher.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/21 14:00:05 by akito             #+#    #+#             */
+/*   Updated: 2022/03/21 14:10:04 by akito            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <stdio.h>
 #include <unistd.h>
@@ -61,9 +73,9 @@ void	*simulate_single_philosopher(void *philosopher_ptr)
 	return (NULL);
 }
 
-void *simulate_alone_philosopher(void *philosopher_ptr)
+void	*simulate_alone_philosopher(void *philosopher_ptr)
 {
-	t_philosopher **philosopher;
+	t_philosopher	**philosopher;
 
 	philosopher = (t_philosopher **)philosopher_ptr;
 	print_log(philosopher[0], TAKING_FORK);

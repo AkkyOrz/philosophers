@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/21 14:00:05 by akito             #+#    #+#             */
+/*   Updated: 2022/03/21 14:09:23 by akito            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -114,7 +126,7 @@ void				delete_all(t_philosopher **philosophers, int num);
 int					get_eaten_count(t_eaten_count *eaten_count);
 void				increment_eaten_count(t_eaten_count *eaten_count);
 bool				is_all_philosopher_satisfied(t_eaten_count *eaten_count,
-					const int num);
+						const int num);
 bool				get_is_satisfied(t_is_satisfied *is_satisfied);
 void				satisfied(t_is_satisfied *is_satisfied);
 

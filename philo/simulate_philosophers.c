@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulate_philosophers.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akito <akito@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/21 14:00:05 by akito             #+#    #+#             */
+/*   Updated: 2022/03/21 14:05:32 by akito            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 #include <stdio.h>
 
-bool thread_multiple_philosophers(t_philosopher **philosophers)
+bool	thread_multiple_philosophers(t_philosopher **philosophers)
 {
 	pthread_t	th[MAX_PHILO];
 	pthread_t	mon;
@@ -30,7 +42,7 @@ bool thread_multiple_philosophers(t_philosopher **philosophers)
 	return (true);
 }
 
-bool thread_single_philosopher(t_philosopher **philosophers)
+bool	thread_single_philosopher(t_philosopher **philosophers)
 {
 	pthread_t	th;
 	pthread_t	mon;
@@ -49,6 +61,7 @@ bool thread_single_philosopher(t_philosopher **philosophers)
 bool	simulate_philosophers(t_philosopher **philosophers)
 {
 	const int	num = philosophers[0]->args->number_of_philosophers;
+
 	if (num == 1)
 		return (thread_single_philosopher(philosophers));
 	else
