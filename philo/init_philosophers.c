@@ -19,6 +19,7 @@ t_vars	*init_vars(int num)
 		forks[i].is_taken = false;
 	vars->forks = forks;
 	vars->liveness.is_alive = true;
+	vars->eaten_count.eaten_count = 0;
 	return (vars);
 }
 

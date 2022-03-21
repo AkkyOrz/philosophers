@@ -26,8 +26,8 @@ SRCS = main.c\
 		get_fork_id.c\
 		ft_swap.c\
 		sleep_in_ms.c\
-
-
+		eaten_count.c\
+		is_satisfied.c\
 
 OBJS = ${SRCS:.c=.o}
 
